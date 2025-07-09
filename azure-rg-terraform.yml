@@ -1,0 +1,41 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: azure-rg-deploy
+  title: Deploy Azure Resource Group
+  description: Deploys an Azure RG using Terraform
+spec:
+  owner: your-team
+  type: service
+ 
+  parameters:
+    - title: Resource Group Information
+      required:
+        - resource_group_name
+      properties:
+        resource_group_name:
+          type: string
+          title: Resource Group Name
+          description: Name of the Azure RG
+ 
+  steps:
+    - id: fetch
+      name: Fetch Terraform Code
+      action: fetch:template
+      input:
+url: https://github.com/<your-username>/azure-rg-terraform
+        targetPath: ./terraform
+ 
+    - id: terraformInit
+      name: Terraform Init
+      action: execute:command
+      input:
+        command: terraform init
+        workingDirectory: ./terraform
+ 
+    - id: terraformApply
+      name: Terraform Apply
+      action: execute:command
+      input:
+        command: terraform apply -auto-approve -var "resource_group_name=${{ parameters.resource_group_name }}"
+        workingDirectory: ./terraform
