@@ -23,7 +23,7 @@ spec:
       name: Fetch Terraform Code
       action: fetch:template
       input:
-url: https://github.com/<your-username>/azure-rg-terraform
+url: https://github.com/gopi-git-devops/azure-rg-terraform
         targetPath: ./terraform
  
     - id: terraformInit
