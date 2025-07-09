@@ -1,11 +1,11 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: azure-rg-deploy
+  name: azure-rg-terraform
   title: Deploy Azure Resource Group
   description: Deploys an Azure RG using Terraform
 spec:
-  owner: your-team
+  owner: user:guest
   type: service
  
   parameters:
@@ -23,7 +23,7 @@ spec:
       name: Fetch Terraform Code
       action: fetch:template
       input:
-url: https://github.com/gopi-git-devops/azure-rg-terraform
+        url: https://github.com/gopi-git-devops/azure-rg-terraform
         targetPath: ./terraform
  
     - id: terraformInit
